@@ -1,0 +1,34 @@
+name: Publish Transducers to GitHub Packages
+
+# This workflow triggers whenever a new GitHub Release is published
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish-gpr:
+    runs-on: ubuntu-latest
+
+    # These permissions are required for the GITHUB_TOKEN to authenticate and publish
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.x" # Replace with your project's Node version
+          registry-url: "https://npm.pkg.github.com"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Publish to GitHub Packages
+        run: npm publish
+        env:
+          # The setup-node action creates an .npmrc file that looks for this exact variable
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
