@@ -1,0 +1,26 @@
+{
+  "name": "@thTs0ustas/transducers",
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com/thTs0ustas/transducers.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "type": "module",
+  "exports": {
+    ".": "./transducers.ts"
+  },
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc ./src/index.ts --outDir ./dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^6.0.3"
+  }
+}
